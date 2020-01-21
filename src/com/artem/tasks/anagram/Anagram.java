@@ -12,6 +12,11 @@ public class Anagram {
 
         int minSize = 3;
         String line = "А попробуй эти строки разбить на слова";
+        List<String> grams = finished(line, minSize);
+        System.out.println(grams);
+
+    }
+    public static List<String> finished(String line, int minSize){
         String[] str = breakLine(line);
         List<String> finish = new ArrayList<>();
         for(String words:str){
@@ -21,7 +26,7 @@ public class Anagram {
                 finish.addAll(buildNGrams(words, minSize));
             }
         }
-        System.out.println(finish);
+        return finish;
     }
     public static List<String> buildNGrams(String words, int minSize){
             List<String> nGrams = new ArrayList<>();
@@ -39,18 +44,7 @@ public class Anagram {
     }
     }
 
-    /*public static List<String> buildNGrams(String word, int minSize){
-        List<String> nGrams = new ArrayList<>();
 
-        for (int k = minSize; k < word.length() + 1; k ++){
-            for (int j = k; j <= word.length(); j++){
-                for(int i = j - k; i < j - (k-1); i ++){
-                    nGrams.add(word.substring(i,j));
-                }
-            }
-        }
-        return nGrams ;
-    }*/
 
 
 
