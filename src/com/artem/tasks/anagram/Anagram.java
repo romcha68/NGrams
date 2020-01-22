@@ -11,22 +11,22 @@ public class Anagram {
     public static void main(String[] args) {
 
         int minSize = 3;
-        String line = "А попробуй эти строки разбить на слова";
-        List<String> grams = valueNGrams(line, minSize);
+        String sentence = "А попробуй эти строки разбить на слова";
+        List<String> grams = valueNGrams(sentence, minSize);
         System.out.println(grams);
 
     }
-    public static List<String> valueNGrams(String line, int minSize){
-        String[] str = breakLine(line);
-        List<String> finish = new ArrayList<>();
-        for(String words:str){
-            if(words.length() <= minSize){
-                System.out.println(finish.add(words));
+    public static List<String> valueNGrams(String sentence, int minSize){
+        String[] word = breakLine(sentence);
+        List<String> finalValue = new ArrayList<>();
+        for(String singleWord:word){
+            if(singleWord.length() <= minSize){
+                finalValue.add(singleWord);
             } else {
-                finish.addAll(buildNGrams(words, minSize));
+                finalValue.addAll(buildNGrams(singleWord, minSize));
             }
         }
-        return finish;
+        return finalValue;
     }
     public static List<String> buildNGrams(String words, int minSize){
             List<String> nGrams = new ArrayList<>();
@@ -37,8 +37,8 @@ public class Anagram {
             }
             return nGrams ;
         }
-    public static String[] breakLine(String line){
-        String[] words =  line.split("\\s");
+    public static String[] breakLine(String sentence){
+        String[] words =  sentence.split("\\s");
 
         return words;
     }
