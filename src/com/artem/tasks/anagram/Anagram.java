@@ -12,27 +12,27 @@ public class Anagram {
 
         int minSize = 3;
         String sentence = "А попробуй эти строки разбить на слова";
-        List<String> grams = valueNGrams(sentence, minSize);
+        List<String> grams = buildNGrams(sentence, minSize);
         System.out.println(grams);
 
     }
-    public static List<String> valueNGrams(String sentence, int minSize){
-        String[] word = breakLine(sentence);
+    public static List<String> buildNGrams(String words, int minSize){
+        String[] word = breakLine(words);
         List<String> finalValue = new ArrayList<>();
         for(String singleWord:word){
             if(singleWord.length() <= minSize){
                 finalValue.add(singleWord);
             } else {
-                finalValue.addAll(buildNGrams(singleWord, minSize));
+                finalValue.addAll(valueNGrams(singleWord, minSize));
             }
         }
         return finalValue;
     }
-    public static List<String> buildNGrams(String words, int minSize){
+    public static List<String> valueNGrams (String sentence, int minSize){
             List<String> nGrams = new ArrayList<>();
-            for (int j = minSize; j <= words.length(); j++) {
-                for (int i = 0; i <= words.length() - j; i++) {
-                    nGrams.add(words.substring(i, i + j));
+            for (int j = minSize; j <= sentence.length(); j++) {
+                for (int i = 0; i <= sentence.length() - j; i++) {
+                    nGrams.add(sentence.substring(i, i + j));
                 }
             }
             return nGrams ;
