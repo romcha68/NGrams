@@ -12,11 +12,11 @@ public class Anagram {
 
         int minSize = 3;
         String line = "А попробуй эти строки разбить на слова";
-        List<String> grams = finished(line, minSize);
+        List<String> grams = valueNGrams(line, minSize);
         System.out.println(grams);
 
     }
-    public static List<String> finished(String line, int minSize){
+    public static List<String> valueNGrams(String line, int minSize){
         String[] str = breakLine(line);
         List<String> finish = new ArrayList<>();
         for(String words:str){
