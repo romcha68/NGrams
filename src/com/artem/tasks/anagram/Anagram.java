@@ -26,15 +26,12 @@ public class Anagram {
     }
     public static List<String> buildNGrams (String word, int minSize){
             List<String> nGrams = new ArrayList<>();
-            if(word.length() < minSize){
-                nGrams.add(word);
-            } else{
-                for(int j = Math.min(word.length(), minSize); j <= word.length(); j++) {
-                    for (int i = 0; i <= word.length() - j; i++) {
-                        nGrams.add(word.substring(i, i + j));
+
+                for(int wordBreaking = Math.min(word.length(), minSize); wordBreaking <= word.length(); wordBreaking++) {
+                    for (int gramBreaking = 0; gramBreaking <= word.length() - wordBreaking; gramBreaking++) {
+                        nGrams.add(word.substring(gramBreaking, gramBreaking + wordBreaking));
                     }
                 }
-            }
             return nGrams;
         }
     }
