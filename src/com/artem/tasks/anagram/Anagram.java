@@ -12,36 +12,35 @@ public class Anagram {
 
         int minSize = 3;
         String sentence = "А попробуй эти строки разбить на слова";
-        List<String> grams = buildNGrams(sentence, minSize);
+        List<String> grams = valueNGrams(sentence, minSize);
         System.out.println(grams);
 
     }
-    public static List<String> buildNGrams(String words, int minSize){
-        String[] word = breakLine(words);
+    public static List<String> valueNGrams(String sentence, int minSize){
+        String[] words =  sentence.split("\\s");
         List<String> finalValue = new ArrayList<>();
-        for(String singleWord:word){
+        for(String singleWord:words){
             if(singleWord.length() <= minSize){
                 finalValue.add(singleWord);
             } else {
-                finalValue.addAll(valueNGrams(singleWord, minSize));
+                finalValue.addAll(buildNGrams(singleWord, minSize));
             }
         }
         return finalValue;
     }
-    public static List<String> valueNGrams (String sentence, int minSize){
+    public static List<String> buildNGrams (String word, int minSize){
             List<String> nGrams = new ArrayList<>();
-            for (int j = minSize; j <= sentence.length(); j++) {
-                for (int i = 0; i <= sentence.length() - j; i++) {
-                    nGrams.add(sentence.substring(i, i + j));
+            if(word.length() < minSize){
+                nGrams.add(word);
+            } else{
+                for (int j = minSize; j <= word.length(); j++) {
+                    for (int i = 0; i <= word.length() - j; i++) {
+                        nGrams.add(word.substring(i, i + j));
+                    }
                 }
             }
             return nGrams ;
         }
-    public static String[] breakLine(String sentence){
-        String[] words =  sentence.split("\\s");
-
-        return words;
-    }
     }
 
 
